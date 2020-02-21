@@ -23,6 +23,22 @@ bosh deploy manifests/kafka-service-broker.yml \
   -v cf-admin-username=admin \
   -v "cf-admin-password=$cf_admin_password"
 
+bosh -e d deploy -d kafka-service-broker ./manifests/kafka-service-broker.yml \
+  --vars-store tmp/creds.yml \
+  -o manifests/operators/cf-integration.yml \
+  -o manifests/operators/az-override.yml \
+  -o manifests/operators/single.yml \
+  -o manifests/operators/networking.yml \
+  -o manifests/operators/release-override.yml \
+  -o manifests/operators/release-remove-url.yml \
+  -v cf-api-url=https://api.$system_domain \
+  -v cf-skip-ssl-validation=$skip_verify \
+  -v cf-admin-username=admin \
+  -v "cf-admin-password=$cf_admin_password" \
+  -v kafka_network_name=$kafka_network_name  \
+  -v "kafka_azs=[$az]"
+
+
 bosh run-errand broker-registrar
 ```
 

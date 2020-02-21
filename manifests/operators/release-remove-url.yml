@@ -1,0 +1,8 @@
+- type: remove
+  path: /releases/name=bpm/url
+- type: remove
+  path: /releases/name=zookeeper/url
+- type: remove
+  path: /releases/name=kafka/url
+- type: remove
+  path: /releases/name=kafka-service-broker/url

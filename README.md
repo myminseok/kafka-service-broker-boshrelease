@@ -27,6 +27,8 @@ bosh -e d deploy -d kafka-service-broker ./manifests/kafka-service-broker.yml \
   --vars-store tmp/creds.yml \
   -o manifests/operators/cf-integration.yml \
   -o manifests/operators/az-override.yml \
+  -o manifests/operators/stemcell-override.yml \
+  -o manifests/operators/disk-override.yml \
   -o manifests/operators/single.yml \
   -o manifests/operators/networking.yml \
   -o manifests/operators/release-override.yml \
@@ -36,6 +38,10 @@ bosh -e d deploy -d kafka-service-broker ./manifests/kafka-service-broker.yml \
   -v cf-admin-username=admin \
   -v "cf-admin-password=$cf_admin_password" \
   -v kafka_network_name=$kafka_network_name  \
+  -v stemcell_version=456.latest \
+  -v zookeeper_persistent_disk=10240 \
+  -v kafka_persistent_disk=10240 \
+  -v kafka-manager_persistent_disk=10240 \
   -v "kafka_azs=[$az]"
 
 

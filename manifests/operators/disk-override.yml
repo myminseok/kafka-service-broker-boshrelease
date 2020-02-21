@@ -1,0 +1,14 @@
+- type: remove
+  path: /instance_groups/name=zookeeper/persistent_disk_type?
+- type: remove
+  path: /instance_groups/name=kafka/persistent_disk_type?
+- type: replace
+  path: /instance_groups/name=zookeeper/persistent_disk?
+  value: ((zookeeper_persistent_disk))
+- type: replace
+  path: /instance_groups/name=kafka/persistent_disk?
+  value: ((kafka_persistent_disk))
+- type: replace
+  path: /instance_groups/name=kafka-manager/persistent_disk?
+  value: ((kafka-manager_persistent_disk))
+
